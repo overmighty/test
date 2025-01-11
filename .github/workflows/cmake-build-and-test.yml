@@ -16,11 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - run: sudo apt update && sudo apt install ninja-build libgtest-dev
+      - run: sudo apt update && sudo apt install python3.12-venv ninja-build libgtest-dev
+      - run: python3 -m venv venv && source venv/bin/activate && pip install lit --user
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - run: cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug
       - run: cmake --build build
       - run: cmake --build build --target test
-      - run: cmake --build build --target lit-test
+      - run: source venv/bin/activate && cmake --build build --target lit-test
