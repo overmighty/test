@@ -12,11 +12,11 @@ on:
       - tests/**/*.h*
 
 jobs:
-  clang_format:
+  cmake_build_and_test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - run: sudo apt update && sudo apt install googletest ninja-build
+      - run: sudo apt update && sudo apt install ninja-build libgtest-dev
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
