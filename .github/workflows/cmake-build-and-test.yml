@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - run: sudo apt update && sudo apt install python3.12-venv ninja-build libgtest-dev
-      - run: python3 -m venv venv && source venv/bin/activate && pip install lit --user
+      - run: python3 -m venv venv && source venv/bin/activate && pip install lit
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
