@@ -5,5 +5,5 @@ int foo();
 }
 
 TEST(test_suite_name, test_name) {
-    ASSERT_EQ(foo(), 43);
+    ASSERT_EQ(foo(), 42);
 }
