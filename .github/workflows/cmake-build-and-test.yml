@@ -23,4 +23,4 @@ jobs:
       - run: cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug
       - run: cmake --build build
       - run: cmake --build build --target test
-      - run: python3 -m venv .venv && source .venv/bin/activate && pip install lit && cmake --build build --target lit-test
+      - run: python3 -m venv .venv && source .venv/bin/activate && pip install lit && PATH="${PATH}:/usr/lib/llvm-18/bin" cmake --build build --target lit-test
