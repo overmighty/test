@@ -16,5 +16,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           - ref: ${{ github.event.pull_request.head.sha }}
-          - fetch-depth: 0
-      - run: git clang-format-18 ${{ github.event.pull_request.base.sha }} --diff
+      - run: |
+          find src tests '(' -name '*.c' -or -name '*.h' -or -name '*.cpp' -or -name '*.hpp' ')' -exec clang-format -i '{}' ';'
+      - run: git diff --exit-code
