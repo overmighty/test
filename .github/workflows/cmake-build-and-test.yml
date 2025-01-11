@@ -13,10 +13,10 @@ on:
 
 jobs:
   cmake_build_and_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - run: sudo apt update && sudo apt install python3.12-venv ninja-build libgtest-dev
+      - run: sudo apt update && sudo apt install ninja-build libgtest-dev python3.12-venv llvm-18-tools
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
