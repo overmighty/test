@@ -1,0 +1,20 @@
+name: Clang-Format
+
+on:
+  pull_request:
+    paths:
+      - src/**/*.c
+      - src/**/*.h
+      - tests/**/*.c*
+      - tests/**/*.h*
+
+jobs:
+  clang_format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - run: git clang-format-18 ${{ github.event.pull_request.base.ref }}
+      - run: git diff --exit-code

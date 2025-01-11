@@ -1,0 +1,26 @@
+name: CMake build and test
+
+on:
+  pull_request:
+    paths:
+      - CMakeLists.txt
+      - src/**/CMakeLists.txt
+      - src/**/*.c
+      - src/**/*.h
+      - tests/**/CMakeLists.txt
+      - tests/**/*.c*
+      - tests/**/*.h*
+
+jobs:
+  clang_format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: sudo apt update && sudo apt install googletest ninja-build
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - run: cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build
+      - run: cmake --build build --target test
+      - run: cmake --build build --target lit-test
