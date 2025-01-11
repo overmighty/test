@@ -11,4 +11,4 @@ gtest_discover_tests(foo_test)
 
 # lit
 
-add_custom_target(lit-test COMMAND lit ${CMAKE_CURRENT_SOURCE_DIR})
+add_custom_target(lit-test COMMAND lit ${CMAKE_CURRENT_SOURCE_DIR} --verbose)
