@@ -16,9 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - run: |
-          sudo apt update && \
-          sudo apt install python3.12-venv ninja-build libgtest-dev
+      - run: sudo apt update && sudo apt install python3.12-venv ninja-build libgtest-dev
       - run:
       - uses: actions/checkout@v4
         with:
@@ -26,8 +24,4 @@ jobs:
       - run: cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug
       - run: cmake --build build
       - run: cmake --build build --target test
-      - run: |
-          python3 -m venv .venv && \
-          source .venv/bin/activate && \
-          pip install lit && \
-          cmake --build build --target lit-test
+      - run: python3 -m venv .venv && source .venv/bin/activate && pip install lit && cmake --build build --target lit-test
